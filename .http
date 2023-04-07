@@ -21,6 +21,5 @@ Content-Type: application/json
 POST /v1/comments HTTP/1.1
 Host: 127.0.0.1:3000
 Content-Type: application/json
-{
-    "Comments3"
-}
+
+Comments3
