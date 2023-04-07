@@ -1,0 +1,26 @@
+GET /v1/ HTTP/1.1
+Host: 127.0.0.1:3000
+###
+
+GET /v1/stats HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+###
+
+POST  /v1/stats HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: text/plain
+###
+
+GET   /v1/comments HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+###
+
+POST /v1/comments HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+{
+    "Comments3"
+}
