@@ -8,6 +8,7 @@ const host= '127.0.0.1';
 const port = 3000;
 
 app.use(express.static('public'));
+
 app.use('/v1',restAPI);
 
 app.listen(port, host, () => {

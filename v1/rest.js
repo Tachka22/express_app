@@ -13,52 +13,35 @@ function generateTable(str, count){
     html+='</table>\n'
     return html;
 }
-//let comments = [{"name" : "Comments", "value":"1"}, {"name" : "Comments", "value":"2"}];
 let comments = [ "Comments1", "Comments2"];
 
 router.get('/', function (req, res){
-    
-    res.setHeader('Content-Type', 'text/plain');
-    res.write('Hello');
-    res.end();
-    
+    res.status(200);
+    res.send("<h1>Главная страница</h1>");
 });
 
 router.get('/stats', function (req, res){
     counter+=1;
-    res.statusCode  = 200;
-    res.setHeader('Content-Type', 'text/html');
+    res.status(200);
     let userAgent = req.headers["user-agent"].toString();
-    res.end(generateTable(userAgent,counter));
+    res.send(generateTable(userAgent,counter));
 });
 
 router.post('/stats', function (req, res){
-    let body = '';
-    req.on('data', (chunk) => {
-        body += chunk.toString();
-    })
-    req.on('end', () => {
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Error! No POST request');
-    })
+    res.status(400);
+    res.send('Error! No POST request');
 });
 
 router.get('/comments', function (req, res){
-    res.statusCode  = 200;
-    res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify(comments))
+    res.status(200);
+    res.json(comments);
 });
 
-router.post('/comments', function (req, res){
-    let body = "";
-    req.on('data', (chunk) =>{
-        body +=chunk.toString();
-    });
-        req.on('end', () =>{
-        comments.push(body);
-        res.setHeader('Content-Type', 'application/json')
-        res.end(JSON.stringify(comments))
-    });
+router.post('/comments',  express.json(),function (req, res){
+    res.status(200);
+    comments.push(...req.body['comment']);
+    res.json(comments);
 });
+
 
 module.exports = router;
