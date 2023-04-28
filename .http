@@ -24,15 +24,53 @@ Content-Type: application/json
 
 {"comment": ["CommentsN"]}
 ###
+
+
+
 GET   /v2  HTTP/1.1
 Host: 127.0.0.1:3000
-Content-Type: text/html
 ###
-GET       /v2/api/login/secret  HTTP/1.1
+GET       /v2/comments/secret HTTP/1.1
 Host: 127.0.0.1:3000
-Content-Type: text/plain
+
 ###
-GET       /v2/api/login/nopass  HTTP/1.1
+GET       /v2/comments/nopass  HTTP/1.1
 Host: 127.0.0.1:3000
-Content-Type: text/plain
+
 ###
+GET       /v2/comments  HTTP/1.1
+Host: 127.0.0.1:3000
+
+###
+POST /v2/comments/secret HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+{"comment": ["CommentsNPass"]}
+
+###
+POST /v2/comments/test HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+{"comment": ["CommentsN"]}
+
+###
+
+
+
+POST /v3/comments HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+{
+    "name" : "Vlad",
+    "text" : "my comment"
+}
+###
+GET /v3/comments/1 HTTP/1.1
+Host: 127.0.0.1:3000
+
+###
+GET /v3/comments/145373457 HTTP/1.1
+Host: 127.0.0.1:3000
