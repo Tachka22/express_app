@@ -42,6 +42,6 @@ router.post('/comments',  express.json(),function (req, res){
     comments.push(...req.body['comment']);
     res.json(comments);
 });
-router.use()
+
 
 module.exports = router;
