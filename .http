@@ -23,3 +23,16 @@ Host: 127.0.0.1:3000
 Content-Type: application/json
 
 {"comment": ["CommentsN"]}
+###
+GET   /v2  HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: text/html
+###
+GET       /v2/api/login/secret  HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: text/plain
+###
+GET       /v2/api/login/nopass  HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: text/plain
+###
