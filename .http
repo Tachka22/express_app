@@ -81,3 +81,45 @@ Host: 127.0.0.1:3000
 ###
 GET /v3/wrongpath HTTP/1.1
 Host: 127.0.0.1:3000
+###
+
+
+
+GET /v4/models HTTP/1.1
+Host: 127.0.0.1:3000
+###
+GET /v4/models/64550c333296280b2f72c7e7 HTTP/1.1
+Host: 127.0.0.1:3000
+###
+POST /v4/models HTTP/1.1
+Host: 127.0.0.1:3000
+X-API-KEY:  abcdef12345
+Content-Type: application/json
+
+{
+    "name" : "Vlad",
+    "model_name" : "my comment",
+    "type_of_model" : "type",
+    "object_model" : "object",
+    "description" : "description",
+    "comments":"comment1"
+}
+
+###
+PUT /v4/models HTTP/1.1
+Host: 127.0.0.1:3000
+X-API-KEY:  abcdef12345
+Content-Type: application/json
+
+{
+    "name" : "Vlad",
+    "model_name" : "my comment",
+    "type_of_model" : "type",
+    "object_model" : "object",
+    "description" : "description",
+    "comments":"comment1"
+}
+###
+DELETE /v4/models HTTP/1.1
+Host: 127.0.0.1:3000
+X-API-KEY:  abcdef12345
