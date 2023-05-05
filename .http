@@ -68,9 +68,16 @@ Content-Type: application/json
     "text" : "my comment"
 }
 ###
-GET /v3/comments/1 HTTP/1.1
+GET /v3/comments HTTP/1.1
 Host: 127.0.0.1:3000
 
 ###
-GET /v3/comments/145373457 HTTP/1.1
+GET /v3/comments/6454aad8ef909b6396805441 HTTP/1.1
+Host: 127.0.0.1:3000
+
+###
+GET /v3/comments/000 HTTP/1.1
+Host: 127.0.0.1:3000
+###
+GET /v3/wrongpath HTTP/1.1
 Host: 127.0.0.1:3000
