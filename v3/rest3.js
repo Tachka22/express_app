@@ -1,15 +1,17 @@
 const express = require('express');
 
-const {getAllData, getDataById,addNewItemToData} = require('../controllers/commentsController')
+const commentsController = require('../controllers/commentsController')
 
 const router = express.Router();
 
 
 router.use(express.json());
 
-router.get('/comments', getAllData).post('/comments',express.json(),addNewItemToData);
+router.get('/comments', commentsController.getAllData);
 
-router.get('/comments/:1',getDataById);
+router.post('/comments',express.json(),commentsController.validateInput,commentsController.addNewItemToData);
+
+router.get('/comments/:id',commentsController.getDataById);
 
 
 router.use((req, res) => {

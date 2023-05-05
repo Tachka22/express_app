@@ -1,35 +1,42 @@
 const { getDataFromDatabase, getOneData, addNewData } = require('../services/commentsService');
-
 async function getAllData(req, res) {
     try {
-        const data = await getDataFromDatabase();
-        res.json(data);
+        const result = await getDataFromDatabase();
+        res.json(result);
     } catch (error) {
-        console.error('Error data', error);
         res.status(500).json({ error: 'Internal Server Error getAllData' });
     }
 }
 
 
 async function getDataById(req, res) {
-    const id = req.params.id;
     try {
-        const data = await getOneData(id);
-        res.json(data);
+        const result = await getOneData(req.params.id);
+        res.json(result);
     } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal Server Error getDataById' });
+        res.status(404).json({ error: 'Not Found' });
     }
 }
 
+function validateInput(req, res, next) {
+    const body = req.body;
+    if(body['name','text'] == undefined){
+        return res.status(400).json({ error: 'Invalid input' });
+    }
+    else{
+        next();
+    }
+}
 
 async function addNewItemToData(req, res) {
-    const data = req.body;
+    const dataCreated = new Date();
+    const { name, text } = req.body;
     try {
-        const result = await addNewData(data);
+        await addNewData({name, text, dataCreated});
+        let result = await getDataFromDatabase();
         res.json(result);
+        
     } catch (error) {
-        console.error('Error adding data', error);
         res.status(500).json({ error: 'Internal Server Error addNewItemToData' });
     }
 }
@@ -38,4 +45,5 @@ module.exports = {
     getAllData,
     getDataById,
     addNewItemToData,
+    validateInput
 };

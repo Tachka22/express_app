@@ -1,24 +1,23 @@
-const connectToMongoDB = require('../configs/dataBaseCon');
+const connectToDb = require('../configs/dataBaseCon');
+const { ObjectId } = require('mongodb');
+
+let database =  connectToDb();
+const collection = database.collection('comments1');
+
 
 async function getDataFromDatabase() {
-    const database = await connectToMongoDB;
-    const collection = database.collection('comments1');
     try {
         const result = await collection.find({}).toArray();
         return result;
     } catch (error) {
-        console.error('Error  getDataFromDatabase', error);
-        com
+        console.error('Error getDataFromDatabase', error);
         throw error;
     }
 }
-
 async function getOneData(id) {
-    const database = connectToMongoDB();
-    const collection = database.collection('comments1'); 
-
     try {
-        const result = await collection.findOne({ _id: id });
+        
+        const result = await collection.findOne({ _id: new ObjectId(id) });
         return result;
     } catch (error) {
         console.error('Error getOneDat', error);
@@ -27,16 +26,8 @@ async function getOneData(id) {
 }
 
 async function addNewData(data) {
-    const database = connectToMongoDB();
-    const collection = database.collection('comments1'); 
-
-    try {
-        const result = await collection.insertOne(data);
-        return result;
-    } catch (error) {
-        console.error('Error addNewData', error);
-        throw error;
-    }
+    console.log(collection);
+    await collection.insertOne(data);
 }
 
 module.exports = {
