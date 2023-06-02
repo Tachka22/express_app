@@ -85,15 +85,41 @@ Host: 127.0.0.1:3000
 
 
 
-GET /v4/models HTTP/1.1
+
+POST  /v4/api/ HTTP/1.1
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+{
+    "name" : "Vlad"
+}
+###
+GET /v4/api/ HTTP/1.1
 Host: 127.0.0.1:3000
 ###
-GET /v4/models/64550c333296280b2f72c7e7 HTTP/1.1
+GET /v4/models/ HTTP/1.1
 Host: 127.0.0.1:3000
 ###
-POST /v4/models HTTP/1.1
+GET /v4/models/647a02d25914d9843d7ddd66 HTTP/1.1
 Host: 127.0.0.1:3000
-X-API-KEY:  abcdef12345
+###
+POST /v4/models/ HTTP/1.1
+api: oqRGFyUEALthRM4xi1zFoFpBRt6YTtOx
+Host: 127.0.0.1:3000
+Content-Type: application/json
+
+{
+    "model_name" : "my comment",
+    "type_of_model" : "type",
+    "object_model" : "object",
+    "description" : "description",
+    "comments":"comment1"   
+}
+
+###
+PUT /v4/models/647a02d25914d9843d7ddd66 HTTP/1.1
+api: oqRGFyUEALthRM4xi1zFoFpBRt6YTtOx
+Host: 127.0.0.1:3000
 Content-Type: application/json
 
 {
@@ -104,22 +130,8 @@ Content-Type: application/json
     "description" : "description",
     "comments":"comment1"
 }
-
 ###
-PUT /v4/models HTTP/1.1
+DELETE /v4/models/647a02d25914d9843d7ddd66 HTTP/1.1
+api: oqRGFyUEALthRM4xi1zFoFpBRt6YTtOx 
 Host: 127.0.0.1:3000
-X-API-KEY:  abcdef12345
-Content-Type: application/json
-
-{
-    "name" : "Vlad",
-    "model_name" : "my comment",
-    "type_of_model" : "type",
-    "object_model" : "object",
-    "description" : "description",
-    "comments":"comment1"
-}
 ###
-DELETE /v4/models HTTP/1.1
-Host: 127.0.0.1:3000
-X-API-KEY:  abcdef12345
