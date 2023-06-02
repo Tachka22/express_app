@@ -5,7 +5,7 @@ let database =  connectToDb();
 
 async function getDataFromDatabase(collectionName) {
     try {
-        const result = await database.collection(collectionName).find({}).toArray();
+        const result = await database.collection(collectionName).find({}, {projection: {name: 1}}).toArray();
         return result;
     } catch (error) {
         console.error('Error', error);
@@ -24,7 +24,6 @@ async function getOneData(id) {
 }
 
 async function addNewData(collectionName, data) {
-    console.log(collectionName);
     try {
         const result = await database.collection(collectionName).insertOne(data);
         return result;
@@ -34,8 +33,33 @@ async function addNewData(collectionName, data) {
     }
 }
 
+async function deleteDate(collectionName, id) {
+    try {
+        const result = await database.collection(collectionName).deleteOne({ _id: new ObjectId(id) });
+        return  result;
+    } catch (error) {
+        console.error('Error', error);
+        throw error;
+    }
+}
+
+async function updateData(collectionName,ID, date){
+    
+    try{
+        const result = await database.collection(collectionName).findOneAndUpdate({ _id: new ObjectId(ID) },{ $set: {DateUpdated:date}});
+        return result;
+    }
+    catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
+
 module.exports = {
     getDataFromDatabase,
     addNewData,
-    getOneData
+    getOneData,
+    deleteDate,
+    updateData
 };
